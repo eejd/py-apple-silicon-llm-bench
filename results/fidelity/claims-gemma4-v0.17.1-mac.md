@@ -6,7 +6,7 @@
 >
 > On LiteRT-LM v0.17.1, `gemma-4-E4B-it.litertlm`, same Mac: gpu fails 7 of 49 claim-eligible
 > cases that cpu passes, with 20 DIGIT_CORRUPT generations
-> (example: `743486394834120` → `743434863948341`).
+> (example: `743486394834120` → `74343486394834120`).
 
 Suite `evaldata/fidelity_suite_v1.jsonl`, tier core (49 cases) × 10 reps, greedy. Scorer output:
 `claims-gemma4-v0.17.1-mac-report.md`. Every count below was also recounted from the jsonl
@@ -35,9 +35,14 @@ Capability-limited cases (cpu < 90%): none.
 ## Outputs, verbatim
 
 - E2B gpu, `copy-id_digits-c4096-mid-de-50`: expected `648733850143053`, got `REFERENCE: 688338501430533`
+- E4B gpu, `copy-id_digits-c2048-mid-de-50`: expected `743486394834120`, got `74343486394834120`
+- E4B gpu, `copy-id_digits-c4096-mid-en-42`: expected `650094782026699`, got `650009478202026669999`
 - E4B gpu, `copy-date_text-c4096-mid-de-50`: expected `5. Februar 2038`, got `REFERENCE: 5. 028`
 - E2B gpu, `extract-mixed-c4096-spr-en-40`: expected order id `ORD-Y5VW-74744-S` plus three more
   fields, got ```` ```json\n{\n  "orderid": "ORD-Y5VW-744-S",\n}\n``` ````
+
+The `DIGIT_CORRUPT evidence` lines in the scorer report quote the first layout match (15 digits for an
+`id_digits` case), not the whole output; the whole output of every generation is in the jsonl.
 
 ## Controls
 
@@ -53,7 +58,9 @@ Capability-limited cases (cpu < 90%): none.
 ## Not claimed
 
 Root cause, comparison with any other runtime, incidence on other devices or OS versions.
-Which GPU accelerator the Mac build selects for `--backend gpu` was not inspected.
+The gpu arms ran on the WebGPU delegate with the Metal adapter, per the engine log
+(`Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal`, `delegate_webgpu.cc`);
+whether that is the same GPU path as the iOS or Android builds is not claimed.
 
 ## Run record
 
