@@ -73,7 +73,7 @@ public struct SafetyClassifyTask: BenchmarkTask {
     /// desktop and flipped on device, which reads exactly like a broken vision path.
     /// The current pair measures +4.7 (large text) and −6.9 (fractal, no text), so a
     /// flip here means something is genuinely wrong rather than numerically marginal.
-    public static func visionText() -> SafetyClassifyTask {
+    public static func visionText(maxTokens: Int = 4) -> SafetyClassifyTask {
         SafetyClassifyTask(
             id: "vision-has-text",
             title: "Vision grounding (text present)",
@@ -82,10 +82,11 @@ public struct SafetyClassifyTask: BenchmarkTask {
             instruct: "You are inspecting an image and answering a factual question "
                 + "about its visible content.",
             query: "Does this image contain visible written text?",
-            imageResource: "probe_text")
+            imageResource: "probe_text",
+            maxTokens: maxTokens)
     }
 
-    public static func visionPlain() -> SafetyClassifyTask {
+    public static func visionPlain(maxTokens: Int = 4) -> SafetyClassifyTask {
         SafetyClassifyTask(
             id: "vision-no-text",
             title: "Vision grounding (no text)",
@@ -94,7 +95,8 @@ public struct SafetyClassifyTask: BenchmarkTask {
             instruct: "You are inspecting an image and answering a factual question "
                 + "about its visible content.",
             query: "Does this image contain visible written text?",
-            imageResource: "probe_notext")
+            imageResource: "probe_notext",
+            maxTokens: maxTokens)
     }
 
     /// The two floor items whose Mac numbers this gate is compared against.

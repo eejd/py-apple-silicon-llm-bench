@@ -420,8 +420,9 @@ public actor BenchmarkRunner {
             metrics: metrics,
             // Keep the full output for tasks scored post-hoc on their text (quality:
             // correctness + degeneracy; prompt-probe: single-question replay); other
-            // tasks keep a short sample to stay lean.
-            outputSample: ["quality", "prompt-probe"].contains(configuration.task.id)
+            // tasks keep a short sample to stay lean. The vision grounding probes keep it too:
+            // their verdict can come after a preamble longer than the sample.
+            outputSample: ["quality", "prompt-probe", "vision-has-text", "vision-no-text"].contains(configuration.task.id)
                 ? collectedOutput : String(collectedOutput.prefix(200))
         )
     }

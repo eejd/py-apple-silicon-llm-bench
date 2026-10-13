@@ -821,6 +821,19 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-10-13: MiniCPM-V-4.7-1B on the same fast_vlm rail (gated-delta hybrid text
+        // decoder + re-authored 27-layer ViT with window merger), static 448 = 64 soft tokens.
+        // Run with --litert-vision.
+        ModelInfo(
+            id: "litert-local/mv47-vl-wi8",
+            displayName: "MiniCPM-V-4.7-1B-VL (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / fp16 adapter, static 448, ekv4096",
+            parameterCountB: 1.0,
+            onDiskSizeMB: 2109,
+            hfRepoId: "litert-local/MiniCPM-V-4.7-1B-VL-wi8",
+            hfFilePatterns: ["model.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-09-01: OvisOCR2 (ATH-MaaS, Qwen3.5-0.8B OCR/document-parsing finetune) on
         // the same 0.8B VL rail — configs are byte-identical to base, weights post-trained.
         // Vision LN table re-calibrated for this checkpoint; quant A/B done on document

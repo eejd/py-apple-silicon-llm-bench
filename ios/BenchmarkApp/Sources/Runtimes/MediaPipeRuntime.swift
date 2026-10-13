@@ -75,6 +75,13 @@ public actor MediaPipeRuntime: LLMRuntime {
             let wantsVision = ProcessInfo.processInfo.arguments.contains("--litert-vision")
             let backend: Backend =
                 ProcessInfo.processInfo.arguments.contains("--litert-cpu") ? .cpu() : .gpu
+            // `--litert-vision-cpu` (with --litert-vision) runs only the vision executor on CPU
+            // and keeps the decoder on `backend`: the decoder-GPU + vision-CPU split of the
+            // Android CLI (--backend=gpu --vision_backend=cpu).
+            let visionOnCPU = ProcessInfo.processInfo.arguments.contains("--litert-vision-cpu")
+            if wantsVision && visionOnCPU {
+                print("[MediaPipeRuntime] vision executor on CPU via --litert-vision-cpu")
+            }
             // `--litert-max-tokens N` pins maxNumTokens regardless of the task-derived
             // contextBudget. The Metal delegate compiles shaders against the KV that
             // maxNumTokens pre-allocates; a value that disagrees with the model's
@@ -107,7 +114,7 @@ public actor MediaPipeRuntime: LLMRuntime {
             let config = try EngineConfig(
                 modelPath: modelFile.path,
                 backend: backend,
-                visionBackend: wantsVision ? backend : nil,
+                visionBackend: wantsVision ? (visionOnCPU ? Backend.cpu() : backend) : nil,
                 maxNumTokens: effectiveMaxTokens,
                 cacheDir: NSTemporaryDirectory()
             )

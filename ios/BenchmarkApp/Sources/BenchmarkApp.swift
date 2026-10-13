@@ -361,6 +361,14 @@ struct HeadlessRunnerView: View {
         if spec.taskId == "short-chat", let maxTokens = spec.maxTokens {
             task = ShortChatTask(maxTokens: maxTokens)
         }
+        // The vision grounding probes honor --max-tokens too: a model that opens with a
+        // preamble ("To determine whether the…") cannot fit its yes/no into the default 4.
+        if spec.taskId == "vision-has-text", let maxTokens = spec.maxTokens {
+            task = SafetyClassifyTask.visionText(maxTokens: maxTokens)
+        }
+        if spec.taskId == "vision-no-text", let maxTokens = spec.maxTokens {
+            task = SafetyClassifyTask.visionPlain(maxTokens: maxTokens)
+        }
 
         let sustainNote = task.sustainSeconds.map { " sustain_s=\(Int($0))" } ?? ""
         let contextNote = spec.contextTokens.map { " context_tokens=\($0)" } ?? ""
