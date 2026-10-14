@@ -45,6 +45,8 @@ If the link fails with duplicate symbols, the package's `-all_load` is colliding
 with the vendored `llama`/`executorch` static libs — swap it for a scoped
 `-force_load <path-to-libLiteRTLM.a>` in `OTHER_LDFLAGS`.
 
+Launch arguments the adapter reads in headless mode (after `--`): `--litert-cpu` runs the decoder on the CPU (default: GPU / Metal); `--litert-vision` builds the vision executor, which a `fast_vlm` bundle needs before its first image (the engine loads without it and fails on the first image message); `--litert-vision-cpu` (with `--litert-vision`) keeps the decoder on the chosen backend and runs only the vision executor on the CPU, the Android CLI's `--backend=gpu --vision_backend=cpu` split; `--litert-thinking`, `--litert-native-benchmark` and `--context-tokens N` are read too. The vision probes `vision-has-text` / `vision-no-text` honour `--max-tokens` and keep their full answer in the result JSON. For hybrid (linear-attention) models run timing as one process per run (`--runs 1`, one launch per run): a second Conversation on the same Engine continues the previous one's state (LiteRT-LM #3165).
+
 ## Architecture
 
 ```
