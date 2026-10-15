@@ -18,6 +18,9 @@ fi
 if ! git -C swift-litert-lm apply --reverse --check "../$PATCH" 2>/dev/null; then
   git -C swift-litert-lm checkout -- .
   git -C swift-litert-lm apply "../$PATCH"
+  # The xcframework pins changed: drop the precompiled clang module of CLiteRTLM, or the build fails with
+  # "module.modulemap has been modified since the module file ... was built" (2026-10-15, v0.18.0 -> v0.17.1).
+  rm -rf .build/out/Intermediates.noindex/SwiftExplicitPrecompiledModules
 fi
 swift build -c release
 echo "built ($LITERTLM_VERSION): $(pwd)/.build/release/litert-mac-verify"
