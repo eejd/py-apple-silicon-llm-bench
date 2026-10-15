@@ -1,0 +1,181 @@
+# count.py — #3913 rope fp16 round 1 (M4 Max), recount of /Users/majimadaisuke/code/standup/drafts/2026-10-15-rope-fp16-3913/raw/mac
+arms 38, replies 1002
+integrity: OK (line counts, expected = LCG(seed), recomputed exact = runner exact, firstMismatchPosition)
+prefill identity across arms: 115/115 case ids have one prefill value
+prefill vs PowerBeef's M6 original records (same case id): 82 equal, 0 differ
+
+## 1. exact / total (M4 Max, LiteRT-LM v0.18.0, PowerBeef's runner and cases)
+
+| model | file | backend-precision | `short` | `baseline` | `long` | `cross4096` | `long3` |
+|---|---|---|---|---|---|---|---|
+| E2B | original | gpu-fp16 | 15/15 | 20/42 | 0/25 | 0/30 | – |
+| E2B | original | gpu-fp32 | 15/15 | 42/42 | 25/25 | 30/30 | – |
+| E2B | original | cpu-fp32 | – | – | – | – | 3/3 |
+| E2B | rope2048 | gpu-fp16 | 15/15 | 42/42 | 25/25 | 30/30 | – |
+| E2B | rope2048 | gpu-fp32 | – | – | 25/25 | – | – |
+| E2B | rope512 | gpu-fp16 | 15/15 | 42/42 | 25/25 | 30/30 | – |
+| E2B | rope512 | gpu-fp32 | – | – | 25/25 | – | – |
+| E4B | original | gpu-fp16 | 15/15 | 19/42 | 0/25 | 0/30 | – |
+| E4B | original | gpu-fp32 | 15/15 | 42/42 | 25/25 | 29/30 | – |
+| E4B | original | cpu-fp32 | – | – | – | – | 3/3 |
+| E4B | rope2048 | gpu-fp16 | 15/15 | 42/42 | 25/25 | 30/30 | – |
+| E4B | rope2048 | gpu-fp32 | – | – | 25/25 | – | – |
+| E4B | rope512 | gpu-fp16 | 15/15 | 42/42 | 25/25 | 30/30 | – |
+| E4B | rope512 | gpu-fp32 | – | – | 25/25 | – | – |
+- `short`: prompts 237–1639 tokens (engine prefill count)
+- `baseline`: prompts 1705–2592 tokens (engine prefill count)
+- `long`: prompts 2094–3983 tokens (engine prefill count)
+- `cross4096`: prompts 3983–4449 tokens (engine prefill count)
+- `long3`: prompts 2094–3983 tokens (engine prefill count)
+
+PowerBeef, Apple M6 (his raw `results/mac/`, E4B; his `split` file = rope2048 here; fp16 records say activation `default`):
+
+| model | file | backend-precision | `short` | `baseline` | `long` | `cross4096` | `long3` |
+|---|---|---|---|---|---|---|---|
+| E4B (M6) | original | gpu-fp16 | 15/15 | 19/42 | 0/25 | – | – |
+| E4B (M6) | original | gpu-fp32 | 15/15 | – | 25/25 | – | – |
+| E4B (M6) | rope2048 | gpu-fp16 | 15/15 | – | 25/25 | 30/30 | – |
+| E4B (M6) | rope2048 | gpu-fp32 | 15/15 | – | 25/25 | – | – |
+| E4B (M6) | rope2048 | cpu-fp32 | – | – | – | – | 3/3 |
+
+## 2. `baseline` by reply digit positions (prefill − 1 … prefill + 46), exact / total
+
+| model | file | backend-precision | 1704–1751 | 1904–1951 (incl. late) | 1952–2044 | 2011–2638 |
+|---|---|---|---|---|---|---|
+| E2B | original | gpu-fp16 | 3/3 | 6/6 | 9/9 | 2/24 |
+| E2B | original | gpu-fp32 | 3/3 | 6/6 | 9/9 | 24/24 |
+| E2B | rope2048 | gpu-fp16 | 3/3 | 6/6 | 9/9 | 24/24 |
+| E2B | rope512 | gpu-fp16 | 3/3 | 6/6 | 9/9 | 24/24 |
+| E4B | original | gpu-fp16 | 3/3 | 6/6 | 9/9 | 1/24 |
+| E4B | original | gpu-fp32 | 3/3 | 6/6 | 9/9 | 24/24 |
+| E4B | rope2048 | gpu-fp16 | 3/3 | 6/6 | 9/9 | 24/24 |
+| E4B | rope512 | gpu-fp16 | 3/3 | 6/6 | 9/9 | 24/24 |
+| E4B (PowerBeef M6, his raw) | original | gpu-fp16 | 3/3 | 6/6 | 9/9 | 1/24 |
+- group 1704–1751: 3 cases, positions 1704–1751, prefill [1705], late 0
+- group 1904–1951 (incl. late): 6 cases, positions 1904–1951, prefill [1905], late 3
+- group 1952–2044: 9 cases, positions 1952–2044, prefill [1953, 1982, 1998], late 0
+- group 2011–2638: 24 cases, positions 2011–2638, prefill [2012, 2028, 2046, 2061, 2094, 2297, 2592], late 3
+- E4B original fp16 `baseline`, M4 Max vs M6 (PowerBeef): same pass/fail in 42/42; differ: []
+
+## 3. text identity
+
+- null test E2B rope2048 fp32 vs original fp32, `long`: identical text 25/25
+- null test E2B rope512 fp32 vs original fp32, `long`: identical text 25/25
+- null test E4B rope2048 fp32 vs original fp32, `long`: identical text 25/25
+- null test E4B rope512 fp32 vs original fp32, `long`: identical text 25/25
+- E2B original fp16 vs original fp32, `short`: identical text 15/15
+- E2B original fp16 vs original fp32, `baseline`: identical text 20/42
+- E2B original fp16 vs original fp32, `long`: identical text 0/25
+- E2B original fp16 vs original fp32, `cross4096`: identical text 0/30
+- E2B rope2048 fp16 vs original fp32, `short`: identical text 15/15
+- E2B rope2048 fp16 vs original fp32, `baseline`: identical text 42/42
+- E2B rope2048 fp16 vs original fp32, `long`: identical text 25/25
+- E2B rope2048 fp16 vs original fp32, `cross4096`: identical text 30/30
+- E2B rope512 fp16 vs original fp32, `short`: identical text 15/15
+- E2B rope512 fp16 vs original fp32, `baseline`: identical text 42/42
+- E2B rope512 fp16 vs original fp32, `long`: identical text 25/25
+- E2B rope512 fp16 vs original fp32, `cross4096`: identical text 30/30
+- E4B original fp16 vs original fp32, `short`: identical text 15/15
+- E4B original fp16 vs original fp32, `baseline`: identical text 19/42
+- E4B original fp16 vs original fp32, `long`: identical text 0/25
+- E4B original fp16 vs original fp32, `cross4096`: identical text 0/30
+- E4B rope2048 fp16 vs original fp32, `short`: identical text 15/15
+- E4B rope2048 fp16 vs original fp32, `baseline`: identical text 42/42
+- E4B rope2048 fp16 vs original fp32, `long`: identical text 25/25
+- E4B rope2048 fp16 vs original fp32, `cross4096`: identical text 29/30
+- E4B rope512 fp16 vs original fp32, `short`: identical text 15/15
+- E4B rope512 fp16 vs original fp32, `baseline`: identical text 42/42
+- E4B rope512 fp16 vs original fp32, `long`: identical text 25/25
+- E4B rope512 fp16 vs original fp32, `cross4096`: identical text 29/30
+- E2B original fp16 vs original fp32 (same file), `short`: text differs in 0/15
+- E2B original fp16 vs original fp32 (same file), `baseline`: text differs in 22/42
+- E2B original fp16 vs original fp32 (same file), `long`: text differs in 25/25
+- E2B original fp16 vs original fp32 (same file), `cross4096`: text differs in 30/30
+- E2B rope2048 fp16 vs rope2048 fp32 (same file), `long`: text differs in 0/25
+- E2B rope512 fp16 vs rope512 fp32 (same file), `long`: text differs in 0/25
+- E4B original fp16 vs original fp32 (same file), `short`: text differs in 0/15
+- E4B original fp16 vs original fp32 (same file), `baseline`: text differs in 23/42
+- E4B original fp16 vs original fp32 (same file), `long`: text differs in 25/25
+- E4B original fp16 vs original fp32 (same file), `cross4096`: text differs in 30/30
+- E4B rope2048 fp16 vs rope2048 fp32 (same file), `long`: text differs in 0/25
+- E4B rope512 fp16 vs rope512 fp32 (same file), `long`: text differs in 0/25
+- E2B original cpu fp32 vs gpu fp32 (`long3` ids in `long`): identical text 3/3
+- E4B original cpu fp32 vs gpu fp32 (`long3` ids in `long`): identical text 3/3
+
+## 4. failures by position (gpu-fp16)
+
+- E2B original `short`: 0 fail
+- E2B original `baseline`: 22 fail, firstMismatchPosition 2051–2604; prefill 2012–2592
+- E2B original `long`: 25 fail, firstMismatchPosition 2097–3998; prefill 2094–3983
+- E2B original `cross4096`: 30 fail, firstMismatchPosition 3989–4460; prefill 3983–4449
+  = E2B original: min firstMismatchPosition 2051 (s126-seed2-iphone2046), highest last-digit position among exact replies 2058
+- E2B rope2048 `short`: 0 fail
+- E2B rope2048 `baseline`: 0 fail
+- E2B rope2048 `long`: 0 fail
+- E2B rope2048 `cross4096`: 0 fail
+- E2B rope512 `short`: 0 fail
+- E2B rope512 `baseline`: 0 fail
+- E2B rope512 `long`: 0 fail
+- E2B rope512 `cross4096`: 0 fail
+- E4B original `short`: 0 fail
+- E4B original `baseline`: 23 fail, firstMismatchPosition 2052–2604; prefill 2012–2592
+- E4B original `long`: 25 fail, firstMismatchPosition 2097–4001; prefill 2094–3983
+- E4B original `cross4096`: 30 fail, firstMismatchPosition 3989–4467; prefill 3983–4449
+  = E4B original: min firstMismatchPosition 2052 (s125-seed3-iphone2028), highest last-digit position among exact replies 2058
+- E4B rope2048 `short`: 0 fail
+- E4B rope2048 `baseline`: 0 fail
+- E4B rope2048 `long`: 0 fail
+- E4B rope2048 `cross4096`: 0 fail
+- E4B rope512 `short`: 0 fail
+- E4B rope512 `baseline`: 0 fail
+- E4B rope512 `long`: 0 fail
+- E4B rope512 `cross4096`: 0 fail
+- E2B original fp16 `baseline`, failures whose digits are all below 2048: none
+- E4B original fp16 `baseline`, failures whose digits are all below 2048: none
+
+## 5. runner-recorded prefill / decode tok/s, medians (recorded by the runner, not a speed benchmark)
+
+- `long` E2B original gpu-fp16: prefill 6559, decode 129.6, seconds/reply 0.82 (n=25)
+- `long` E2B original gpu-fp32: prefill 5457, decode 127.0, seconds/reply 0.92 (n=25)
+- `long` E2B rope2048 gpu-fp16: prefill 6545, decode 130.6, seconds/reply 0.83 (n=25)
+- `long` E2B rope2048 gpu-fp32: prefill 5454, decode 123.5, seconds/reply 0.94 (n=25)
+- `long` E2B rope512 gpu-fp16: prefill 6454, decode 132.6, seconds/reply 0.82 (n=25)
+- `long` E2B rope512 gpu-fp32: prefill 5398, decode 123.5, seconds/reply 0.94 (n=25)
+- `long` E4B original gpu-fp16: prefill 2123, decode 81.9, seconds/reply 2.04 (n=25)
+- `long` E4B original gpu-fp32: prefill 1790, decode 79.8, seconds/reply 2.25 (n=25)
+- `long` E4B rope2048 gpu-fp16: prefill 2120, decode 81.0, seconds/reply 2.00 (n=25)
+- `long` E4B rope2048 gpu-fp32: prefill 1855, decode 81.2, seconds/reply 2.19 (n=25)
+- `long` E4B rope512 gpu-fp16: prefill 2107, decode 81.8, seconds/reply 1.99 (n=25)
+- `long` E4B rope512 gpu-fp32: prefill 1835, decode 80.9, seconds/reply 2.19 (n=25)
+
+## 3a. failed replies whose digits equal another case's reference: 1 of 1002 replies
+
+- cross4096__E4B-original__gpu-fp32 s257-seed4: digits = reference of seed [3]; previous case in the arm s257-seed3
+
+## 3b. recheck: E4B original gpu fp32, `s257-seed4` (raw/mac/recheck/)
+
+- s257-seed3-seed4__E4B-original__gpu-fp32__pair1: s257-seed3 prefill 4089 exact True
+- s257-seed3-seed4__E4B-original__gpu-fp32__pair1: s257-seed4 prefill 4089 exact True
+- s257-seed4__E4B-original__gpu-fp32__single1: s257-seed4 prefill 4089 exact True
+- s257-seed4__E4B-original__gpu-fp32__single2: s257-seed4 prefill 4089 exact True
+- s257-seed4__E4B-original__gpu-fp32__single3: s257-seed4 prefill 4089 exact True
+
+## 7. engine log lines (verbatim, deduplicated; count = logs containing the line)
+
+- (38) INFO: [gpu_registry.cc:113] Statically linked GPU accelerator registered.
+- (38) INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+- (38) engine loaded in <t> s
+- (38) INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=…, name=GPU WebGPU
+- (38) WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorNotFound.
+- (38) INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=…, name=CpuAccelerator
+- (38) INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=…, name=GPU WebGPU
+- (38) INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+- (36) INFO: [delegate_webgpu.cc:342] Create WebGPU environment (use_low_power=0, enable_host_mapped_pointer=1)
+- (36) INFO: [delegate_webgpu.cc:363] Created a WebGPU environment.
+- (36) INFO: [gpu_environment.cc:436] Failed to create OpenCL context.
+- (36) delegate_webgpu.cc:759] # of threads to compile kernels = 1
+- (36) delegate_kernel.cc:979] Initializing WebGPU-based API from serialized data.
+- (36) delegate_webgpu.cc:751] # of threads to upload weights = 2
+- (36) sampler_factory.cc:492] WebGPU sampler not available, falling back to statically linked C API.
+- (36) INFO: [gpu_environment.cc:408] Created default Metal device.
+- (36) environment.cc:532] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU

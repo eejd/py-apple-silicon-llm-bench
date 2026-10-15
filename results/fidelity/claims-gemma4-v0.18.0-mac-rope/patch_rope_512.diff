@@ -1,0 +1,13 @@
+--- a/patch_rope.py
++++ b/patch_rope_512.py
+@@ -39,8 +39,8 @@
+ src, dst = args[0], args[2]
+ shift = None if SPLIT else float(args[1])
+ 
+-BLOCK = 2048          # float16 represents every integer up to 2048
+-BLOCKS = 16           # 16 * 2048 = 32768 positions
++BLOCK = 512
++BLOCKS = 64
+ ALIGN = 16384         # section alignment in the container
+ TARGETS = ("tf_lite_prefill_decode", "tf_lite_mtp_drafter")
+ 

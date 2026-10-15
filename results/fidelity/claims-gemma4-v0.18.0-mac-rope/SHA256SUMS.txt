@@ -1,0 +1,18 @@
+# sha256 of the six files of the #3913 rope fp16 round 1 (2026-10-15 07:09:07 JST, shasum -a 256).
+# patched with PowerBeef/LiteRT-LM research/3913 @ 39d5a014 patch_rope.py --split (rope2048) and its
+# BLOCK 512 / BLOCKS 64 copy upstream/patch_rope_512.py (rope512); venv ~/venvs/rope3913 (rope3913.requirements.txt).
+# 'shasum -a 256 -c SHA256SUMS.txt' checks the six lines below; the '# ' lines are the verdicts.
+181938105e0eefd105961417e8da75903eacda102c4fce9ce90f50b97139a63c  gemma-4-E2B-it.litertlm
+0b2a8980ce155fd97673d8e820b4d29d9c7d99b8fa6806f425d969b145bd52e0  gemma-4-E4B-it.litertlm
+4a691f036fb06f7d4761da0026ad69a8b16cd7d9bc3965de9c2765edec7cb15f  gemma-4-E4B-it-rope2048.litertlm
+a963992d901da9f2436ffdcea69e90b8c610a7c72000094787d2a18a69040b17  gemma-4-E2B-it-rope512.litertlm
+6353a23321e46624e0fa1b038d23370e8e0af84032d24d30ef53be3b116f655c  gemma-4-E4B-it-rope512.litertlm
+0b89958c5dbf4167b96fd3f3c1da52ecb1ac413a814db78ffeb1e9d2f47a57a4  gemma-4-E2B-it-rope2048.litertlm
+
+# file  size  sha256  verdict
+# gemma-4-E2B-it.litertlm  2588147712 B  181938105e0eefd105961417e8da75903eacda102c4fce9ce90f50b97139a63c  MATCH HF blob name + picitujeromanov #3913 6166055004
+# gemma-4-E4B-it.litertlm  3659530240 B  0b2a8980ce155fd97673d8e820b4d29d9c7d99b8fa6806f425d969b145bd52e0  MATCH HF blob name + PowerBeef README
+# gemma-4-E4B-it-rope2048.litertlm  3659988992 B  4a691f036fb06f7d4761da0026ad69a8b16cd7d9bc3965de9c2765edec7cb15f  MATCH PowerBeef README / HF PowerBeef02 13d5aa4c
+# gemma-4-E2B-it-rope512.litertlm  2589310976 B  a963992d901da9f2436ffdcea69e90b8c610a7c72000094787d2a18a69040b17  MATCH picitujeromanov #3913 6166055004
+# gemma-4-E4B-it-rope512.litertlm  3660726272 B  6353a23321e46624e0fa1b038d23370e8e0af84032d24d30ef53be3b116f655c  MATCH picitujeromanov #3913 6166055004
+# gemma-4-E2B-it-rope2048.litertlm  2588557312 B  0b89958c5dbf4167b96fd3f3c1da52ecb1ac413a814db78ffeb1e9d2f47a57a4  no published value (own)
