@@ -1,0 +1,8 @@
+# tag  label  backend  prompt  max_num_tokens  max_output_tokens  cache  timeout_s  est_s  rest_s  [extras]
+# G #3913 r2 dry plan (gen_plan.py): the fake phone, the stand-in CLI, two labels, a CPU leg
+orig-gpu-s104-seed1-iphone1705  orig  gpu  s104-seed1-iphone1705  8192  80  cold  120  20  0
+orig-gpu-s125-seed1-iphone2028  orig  gpu  s125-seed1-iphone2028  8192  80  keep  120  15  0
+orig-gpu-s250-seed1  orig  gpu  s250-seed1  8192  80  keep  120  15  0
+orig-cpu-s104-seed1-iphone1705  orig  cpu  s104-seed1-iphone1705  8192  80  cold  120  20  0
+r512-gpu-s125-seed1-iphone2028  r512  gpu  s125-seed1-iphone2028  8192  80  cold  120  20  0
+r512-gpu-s250-seed1  r512  gpu  s250-seed1  8192  80  keep  120  15  0

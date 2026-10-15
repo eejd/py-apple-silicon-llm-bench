@@ -59,3 +59,7 @@ android/bin/
 
 # Xcode DerivedData relocated into the project dir (build artifacts, ~3.7 GB)
 .dd/
+
+# Fidelity claims keep their engine logs next to the raw records (results/fidelity/<claims dir>/logs/):
+# the same rule as results/raw above, a stored log is the measurement.
+!results/fidelity/**/*.log

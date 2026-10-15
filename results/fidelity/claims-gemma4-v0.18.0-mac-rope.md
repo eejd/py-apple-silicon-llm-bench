@@ -25,8 +25,9 @@ package (`CLiteRTLM_mac.xcframework` checksum `5f6ee68d…`), greedy (`topK 1, t
 temperature 0`), `maxOutputTokens 80`, `maxNumTokens 8192`, one `Conversation.sendMessage` per
 case, one runner process per arm. Each case asks the model to copy a 48-digit number placed before
 a filler text; `exact` means the reply is the number, digit for digit. Every count below was
-recounted from the jsonl with two separate scripts (`claims-gemma4-v0.18.0-mac-rope/count.txt`
-is one of them).
+recounted from the jsonl with two separate scripts (`claims-gemma4-v0.18.0-mac-rope/count.py` is
+one of them; `count.txt` next to it is its output, with his `research/issue-3913` folder given as
+the second argument for the rows that compare with his records).
 
 Model files (sha256 in `claims-gemma4-v0.18.0-mac-rope/SHA256SUMS.txt`, checked twice on the Mac):
 

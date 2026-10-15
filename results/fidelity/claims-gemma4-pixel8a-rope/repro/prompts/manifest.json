@@ -1,0 +1,805 @@
+{
+ "late-s117-seed1": {
+  "bytes": 10265,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": true,
+  "seed": 1,
+  "sentences": 117,
+  "sha256": "dc3013aaf8c7d08899f9d001dffdc105806c032aa6bdbb5c959f588f73644e39",
+  "subset": []
+ },
+ "late-s117-seed2": {
+  "bytes": 10265,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": true,
+  "seed": 2,
+  "sentences": 117,
+  "sha256": "8c7cb3121146d32a9e74746041531d638b31eeb648e2b8832603e2345f687af5",
+  "subset": []
+ },
+ "late-s117-seed3": {
+  "bytes": 10265,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": true,
+  "seed": 3,
+  "sentences": 117,
+  "sha256": "b81a082a9064e7f3611341d71c36b9397b91faddb9bd27471d02ea75166536db",
+  "subset": []
+ },
+ "late-s142-seed1": {
+  "bytes": 12427,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": true,
+  "seed": 1,
+  "sentences": 142,
+  "sha256": "9c9929ce6a8c584163cd77b53c7ada10e8dffd577cf923b7ea4c2c8212f58ab4",
+  "subset": []
+ },
+ "late-s142-seed2": {
+  "bytes": 12427,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": true,
+  "seed": 2,
+  "sentences": 142,
+  "sha256": "ef4853388a75354fe240fc2af0294297a6330e5d73ce138c266fcc342c08bb82",
+  "subset": []
+ },
+ "late-s142-seed3": {
+  "bytes": 12427,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": true,
+  "seed": 3,
+  "sentences": 142,
+  "sha256": "8f017e20b561e0663346b9eeabee20fabef079a7176ebdad1ed4a7e39f7663e3",
+  "subset": []
+ },
+ "s104-seed1-iphone1705": {
+  "bytes": 9151,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   1705
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 104,
+  "sha256": "3d2e401a23e5b0a28db59139154ef3da8bf8a60f1f91560685f93617dbb4d90b",
+  "subset": [
+   "gpu26",
+   "cpu3"
+  ]
+ },
+ "s104-seed2-iphone1705": {
+  "bytes": 9151,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   1705
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 104,
+  "sha256": "7f5bcae807b1e7ac1d4fbb8cc124e60bb51b94c8b4e79ec3142d7aa50e9651a0",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s104-seed3-iphone1705": {
+  "bytes": 9151,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "his_mac_e4b_prefill": [
+   1705
+  ],
+  "late": false,
+  "seed": 3,
+  "sentences": 104,
+  "sha256": "da6e015bddcc9db0c2545281bd2b41d7d4b413610e0c0ce6443026e9cd2c3114",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s117-seed1-iphone1905": {
+  "bytes": 10265,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   1905
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 117,
+  "sha256": "7e12ebf9bc511a06154a2a17cd7858a0dffafe71f442fe588a516795a0158302",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s117-seed2-iphone1905": {
+  "bytes": 10265,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   1905
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 117,
+  "sha256": "ef48cf15d59117eeffa91d72cc62a36caf0acd6d18a45289adc2f779dd2debeb",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s117-seed3-iphone1905": {
+  "bytes": 10265,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "his_mac_e4b_prefill": [
+   1905
+  ],
+  "late": false,
+  "seed": 3,
+  "sentences": 117,
+  "sha256": "2a6de6472ea644b525369200570adbf50f8e5232b40c2365ef4e3762d75d6357",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s120-seed1-iphone1953": {
+  "bytes": 10529,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   1953
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 120,
+  "sha256": "a5f55c50dbaa641ae34f435854752b23aa535b3fc5ef40188e0cb1e685b612d3",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s120-seed2-iphone1953": {
+  "bytes": 10529,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   1953
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 120,
+  "sha256": "075d47c4f55fe3ac9237628d5a39d2bff5f62d5b57d37dc0796b1d8ea4c275f0",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s120-seed3-iphone1953": {
+  "bytes": 10529,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "his_mac_e4b_prefill": [
+   1953
+  ],
+  "late": false,
+  "seed": 3,
+  "sentences": 120,
+  "sha256": "90806bde9704d06339b07885d115a1e9a9e62eaa9e2275452d55d358b473bd38",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s122-seed1-iphone1982": {
+  "bytes": 10693,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 122,
+  "sha256": "4287edac7a4bccccf2c1521ada6987995225bd5d6cbcb776e7b363791b649123",
+  "subset": []
+ },
+ "s122-seed2-iphone1982": {
+  "bytes": 10693,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 122,
+  "sha256": "ccdc2cc12436c5a1fb71061e4bea91b10e59e364aef686cb8b142a159779f112",
+  "subset": []
+ },
+ "s122-seed3-iphone1982": {
+  "bytes": 10693,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 122,
+  "sha256": "f9368160e443cd23eb83956b9c5c6812efb437836bafbd108e324fc02ef9cae8",
+  "subset": []
+ },
+ "s123-seed1-iphone1998": {
+  "bytes": 10774,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   1998
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 123,
+  "sha256": "cf8e93ef02a8445338a4121d0b9cdff42c6e7a9aba9b0e0316a14c9aa24a5481",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s123-seed2-iphone1998": {
+  "bytes": 10774,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   1998
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 123,
+  "sha256": "4c980c07985779cf7c623a524c22b7418c42dad7b94ce695832b5d9a86edc4ea",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s123-seed3-iphone1998": {
+  "bytes": 10774,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "his_mac_e4b_prefill": [
+   1998
+  ],
+  "late": false,
+  "seed": 3,
+  "sentences": 123,
+  "sha256": "445df4b3338f8617d50c79a22765688902e17e6dc84847815c54b4f1603b8aa2",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s124-seed1-iphone2012": {
+  "bytes": 10863,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 124,
+  "sha256": "6ffe8d34492ff1c7b6faa1591cbf2a8c635c78c5911dd7e731ca778742319f82",
+  "subset": []
+ },
+ "s124-seed2-iphone2012": {
+  "bytes": 10863,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 124,
+  "sha256": "38c9b5796f9ddb838a45e812e2c5407a402d91bb91cd6744ec6d926ce15dd46e",
+  "subset": []
+ },
+ "s124-seed3-iphone2012": {
+  "bytes": 10863,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 124,
+  "sha256": "dba25a6e5add0f4db3be9cb92ae550f8144cbf14fa17154a173f8fda1196f145",
+  "subset": []
+ },
+ "s125-seed1-iphone2028": {
+  "bytes": 10949,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   2028
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 125,
+  "sha256": "5feaecffb035692eec3493e92104bf19279ab8e028fb3f5b60308ce178428c1a",
+  "subset": [
+   "gpu26",
+   "cpu3"
+  ]
+ },
+ "s125-seed2-iphone2028": {
+  "bytes": 10949,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   2028
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 125,
+  "sha256": "01872ff6fd53191dc477a732c91eb0fb7b4f9162d1616b3792a7f036521ae5ac",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s125-seed3-iphone2028": {
+  "bytes": 10949,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "his_mac_e4b_prefill": [
+   2028
+  ],
+  "late": false,
+  "seed": 3,
+  "sentences": 125,
+  "sha256": "a49a6447565a9e376a7564b73c5d4c2cc84ff881c855acbe05555eba325f5a7d",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s126-seed1-iphone2046": {
+  "bytes": 11044,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 126,
+  "sha256": "3d2ec3980bcba09ea3594c66923ed3070cf3927950b88b5540bd68e98f942740",
+  "subset": []
+ },
+ "s126-seed2-iphone2046": {
+  "bytes": 11044,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 126,
+  "sha256": "fd1a5fec7da64d8ad3e64a8ded80a04ba2c0401cf58a4cc5819d5634a7636f3f",
+  "subset": []
+ },
+ "s126-seed3-iphone2046": {
+  "bytes": 11044,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 126,
+  "sha256": "f811f41afbf24cf533f05cc85ceb3937000646f0d78aa03f90d415bb64bf280e",
+  "subset": []
+ },
+ "s127-seed1-iphone2061": {
+  "bytes": 11126,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   2061
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 127,
+  "sha256": "f79cda075fd3e1c5e35b4ce943ca926e9ae3aa614cfbf5b5ea3a99e38f307417",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s127-seed2-iphone2061": {
+  "bytes": 11126,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   2061
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 127,
+  "sha256": "bd1304764b388af0574bc47da6adde7e56bc3e1415446f1d39a3c6994e19c015",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s127-seed3-iphone2061": {
+  "bytes": 11126,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "his_mac_e4b_prefill": [
+   2061
+  ],
+  "late": false,
+  "seed": 3,
+  "sentences": 127,
+  "sha256": "2fa2317556bf8752ea75f5ef1ebebc9ddb146875af479c0b8053e1e9d33858eb",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s129-seed1": {
+  "bytes": 11311,
+  "cases_file": "long",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   2094
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 129,
+  "sha256": "fc9e3eaa7991c70a4ac4ed33ae5ee84b76da07d106d9775d0bcc324a987c5e38",
+  "subset": [
+   "gpu26",
+   "cpu3"
+  ]
+ },
+ "s129-seed1-iphone2094": {
+  "bytes": 11311,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 129,
+  "sha256": "fc9e3eaa7991c70a4ac4ed33ae5ee84b76da07d106d9775d0bcc324a987c5e38",
+  "subset": []
+ },
+ "s129-seed2": {
+  "bytes": 11311,
+  "cases_file": "long",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   2094
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 129,
+  "sha256": "2be79478f7a43bf401b966e7b455254e05e0396738d1167a921ddd4784edb0e1",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s129-seed2-iphone2094": {
+  "bytes": 11311,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 129,
+  "sha256": "2be79478f7a43bf401b966e7b455254e05e0396738d1167a921ddd4784edb0e1",
+  "subset": []
+ },
+ "s129-seed3": {
+  "bytes": 11311,
+  "cases_file": "long",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 129,
+  "sha256": "14c7c42f6bb270eaf5b366d6d74447cd2d99f4731ce6ac2676f0736a51fbbb29",
+  "subset": []
+ },
+ "s129-seed3-iphone2094": {
+  "bytes": 11311,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 129,
+  "sha256": "14c7c42f6bb270eaf5b366d6d74447cd2d99f4731ce6ac2676f0736a51fbbb29",
+  "subset": []
+ },
+ "s129-seed4": {
+  "bytes": 11311,
+  "cases_file": "long",
+  "expected": "241571346546417478885087663709890053284445109638",
+  "late": false,
+  "seed": 4,
+  "sentences": 129,
+  "sha256": "f338a41a513f2718fa9f2cb19c22bf2c15d796527075ea837af0eadf3ea4f07f",
+  "subset": []
+ },
+ "s129-seed5": {
+  "bytes": 11311,
+  "cases_file": "long",
+  "expected": "345519904548137832004821414990953535901480400468",
+  "late": false,
+  "seed": 5,
+  "sentences": 129,
+  "sha256": "99788a9e476fb016735a4b91023cf53649ecf16165b48a3e8e5cb1f01aeae79b",
+  "subset": []
+ },
+ "s142-seed1": {
+  "bytes": 12427,
+  "cases_file": "long",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 142,
+  "sha256": "b5714fb4e27432113d56a45e69819a44f96a695e82ca2a55eb63e664dff411b5",
+  "subset": []
+ },
+ "s142-seed1-iphone2297": {
+  "bytes": 12427,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 142,
+  "sha256": "b5714fb4e27432113d56a45e69819a44f96a695e82ca2a55eb63e664dff411b5",
+  "subset": []
+ },
+ "s142-seed2": {
+  "bytes": 12427,
+  "cases_file": "long",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 142,
+  "sha256": "981055bdd9b41f9fd261b38878dc5f0a1fe8ae31deedd142bcfbfb53bb44ee8e",
+  "subset": []
+ },
+ "s142-seed2-iphone2297": {
+  "bytes": 12427,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 142,
+  "sha256": "981055bdd9b41f9fd261b38878dc5f0a1fe8ae31deedd142bcfbfb53bb44ee8e",
+  "subset": []
+ },
+ "s142-seed3": {
+  "bytes": 12427,
+  "cases_file": "long",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 142,
+  "sha256": "722eb55af94e542c506487c589bcbb68d80c1e1aca4afb0089635833b5741ed1",
+  "subset": []
+ },
+ "s142-seed3-iphone2297": {
+  "bytes": 12427,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 142,
+  "sha256": "722eb55af94e542c506487c589bcbb68d80c1e1aca4afb0089635833b5741ed1",
+  "subset": []
+ },
+ "s142-seed4": {
+  "bytes": 12427,
+  "cases_file": "long",
+  "expected": "241571346546417478885087663709890053284445109638",
+  "late": false,
+  "seed": 4,
+  "sentences": 142,
+  "sha256": "44c10f14308d1a981e0bf66e20486a2aafe78b54dca08008170978d5cf48a2cb",
+  "subset": []
+ },
+ "s142-seed5": {
+  "bytes": 12427,
+  "cases_file": "long",
+  "expected": "345519904548137832004821414990953535901480400468",
+  "late": false,
+  "seed": 5,
+  "sentences": 142,
+  "sha256": "13312fa1be1449e40054f3abfc011ff8d76d74f3d8d2b3a6589a7e47df693a2b",
+  "subset": []
+ },
+ "s161-seed1": {
+  "bytes": 14066,
+  "cases_file": "long",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   2592
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 161,
+  "sha256": "9390135f9b726e8fa0ddae4e1f64219015cede64012f4d5c47f5f09cf5eadd75",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s161-seed1-iphone2592": {
+  "bytes": 14066,
+  "cases_file": "baseline",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "late": false,
+  "seed": 1,
+  "sentences": 161,
+  "sha256": "9390135f9b726e8fa0ddae4e1f64219015cede64012f4d5c47f5f09cf5eadd75",
+  "subset": []
+ },
+ "s161-seed2": {
+  "bytes": 14066,
+  "cases_file": "long",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   2592
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 161,
+  "sha256": "8d498c1918e9971977d725d4577789ce2fb33248c0cda018f93b9a1afc18abd8",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s161-seed2-iphone2592": {
+  "bytes": 14066,
+  "cases_file": "baseline",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "late": false,
+  "seed": 2,
+  "sentences": 161,
+  "sha256": "8d498c1918e9971977d725d4577789ce2fb33248c0cda018f93b9a1afc18abd8",
+  "subset": []
+ },
+ "s161-seed3": {
+  "bytes": 14066,
+  "cases_file": "long",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 161,
+  "sha256": "d50116a8c93213781483b4cac5d16b9ed5d3c8d06425ec99c8aeb298b983f691",
+  "subset": []
+ },
+ "s161-seed3-iphone2592": {
+  "bytes": 14066,
+  "cases_file": "baseline",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 161,
+  "sha256": "d50116a8c93213781483b4cac5d16b9ed5d3c8d06425ec99c8aeb298b983f691",
+  "subset": []
+ },
+ "s161-seed4": {
+  "bytes": 14066,
+  "cases_file": "long",
+  "expected": "241571346546417478885087663709890053284445109638",
+  "late": false,
+  "seed": 4,
+  "sentences": 161,
+  "sha256": "487722e36b5aabd4d2f18f58431b3b73ecf6d6c3bf739c091acf02c8bd5bd726",
+  "subset": []
+ },
+ "s161-seed5": {
+  "bytes": 14066,
+  "cases_file": "long",
+  "expected": "345519904548137832004821414990953535901480400468",
+  "late": false,
+  "seed": 5,
+  "sentences": 161,
+  "sha256": "ab6e3931da676624ae739eef93a097e2301c6533a3fc710609dccdcd4ecb7855",
+  "subset": []
+ },
+ "s190-seed1": {
+  "bytes": 16578,
+  "cases_file": "long",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   3047
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 190,
+  "sha256": "d86e8522778d3338ae21fbdda9e5c918c490653d348aeb01dea41a078cefe50c",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s190-seed2": {
+  "bytes": 16578,
+  "cases_file": "long",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   3047
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 190,
+  "sha256": "b64afcf1310a3c998e16d90f2ae061adab23b9f190598e0001e881615d61063f",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s190-seed3": {
+  "bytes": 16578,
+  "cases_file": "long",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 190,
+  "sha256": "f8ca4a077f205a27f96efd13a1de54bdb1c84f42fd1323a1f69defcb6d3dbc0e",
+  "subset": []
+ },
+ "s190-seed4": {
+  "bytes": 16578,
+  "cases_file": "long",
+  "expected": "241571346546417478885087663709890053284445109638",
+  "late": false,
+  "seed": 4,
+  "sentences": 190,
+  "sha256": "f7d1345f1dce9b8ccce8b4deebcaf9b366b18e87f07afe5759cb0811582760c3",
+  "subset": []
+ },
+ "s190-seed5": {
+  "bytes": 16578,
+  "cases_file": "long",
+  "expected": "345519904548137832004821414990953535901480400468",
+  "late": false,
+  "seed": 5,
+  "sentences": 190,
+  "sha256": "9420036c37ad28d26bf2d81e35c3b7354dc00a4d47ecf6813df78faedd032c5a",
+  "subset": []
+ },
+ "s250-seed1": {
+  "bytes": 21769,
+  "cases_file": "long",
+  "expected": "360450296322042052577609842187885426869520014813",
+  "his_mac_e4b_prefill": [
+   3983
+  ],
+  "late": false,
+  "seed": 1,
+  "sentences": 250,
+  "sha256": "ea5e3f0c00580afaa120891943f0a5470cfb11253c008d39ed53b02e1cc48f95",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s250-seed2": {
+  "bytes": 21769,
+  "cases_file": "long",
+  "expected": "264598852324464436528445692378236997464565306650",
+  "his_mac_e4b_prefill": [
+   3983
+  ],
+  "late": false,
+  "seed": 2,
+  "sentences": 250,
+  "sha256": "0f5652ca144c46a9f7d65e4716a477c9fd3b6fbd7e98d85e5d43a6ddeedecaa0",
+  "subset": [
+   "gpu26"
+  ]
+ },
+ "s250-seed3": {
+  "bytes": 21769,
+  "cases_file": "long",
+  "expected": "358435599326985997656161133549419581389590607599",
+  "late": false,
+  "seed": 3,
+  "sentences": 250,
+  "sha256": "3f2a929dccc0e309f73acf5a71747d6949b43831391b741212f8304d445f3cb1",
+  "subset": []
+ },
+ "s250-seed4": {
+  "bytes": 21769,
+  "cases_file": "long",
+  "expected": "241571346546417478885087663709890053284445109638",
+  "late": false,
+  "seed": 4,
+  "sentences": 250,
+  "sha256": "9526fd98ade13f0a7ea6971d55d75b82ffa0c2b257067c824ddc2043a89a9af2",
+  "subset": []
+ },
+ "s250-seed5": {
+  "bytes": 21769,
+  "cases_file": "long",
+  "expected": "345519904548137832004821414990953535901480400468",
+  "late": false,
+  "seed": 5,
+  "sentences": 250,
+  "sha256": "9dbfc7357482a8f13629e0d26350a7018c8aa861bffa9e8a6068d691864f97b2",
+  "subset": []
+ }
+}

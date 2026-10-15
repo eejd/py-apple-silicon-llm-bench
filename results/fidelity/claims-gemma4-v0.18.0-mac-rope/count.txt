@@ -1,4 +1,4 @@
-# count.py — #3913 rope fp16 round 1 (M4 Max), recount of /Users/majimadaisuke/code/standup/drafts/2026-10-15-rope-fp16-3913/raw/mac
+# count.py — #3913 rope fp16 (M4 Max), recount of raw/
 arms 38, replies 1002
 integrity: OK (line counts, expected = LCG(seed), recomputed exact = runner exact, firstMismatchPosition)
 prefill identity across arms: 115/115 case ids have one prefill value
@@ -152,7 +152,7 @@ PowerBeef, Apple M6 (his raw `results/mac/`, E4B; his `split` file = rope2048 he
 
 - cross4096__E4B-original__gpu-fp32 s257-seed4: digits = reference of seed [3]; previous case in the arm s257-seed3
 
-## 3b. recheck: E4B original gpu fp32, `s257-seed4` (raw/mac/recheck/)
+## 3b. recheck: E4B original gpu fp32, `s257-seed4` (raw/recheck/)
 
 - s257-seed3-seed4__E4B-original__gpu-fp32__pair1: s257-seed3 prefill 4089 exact True
 - s257-seed3-seed4__E4B-original__gpu-fp32__pair1: s257-seed4 prefill 4089 exact True
@@ -160,22 +160,47 @@ PowerBeef, Apple M6 (his raw `results/mac/`, E4B; his `split` file = rope2048 he
 - s257-seed4__E4B-original__gpu-fp32__single2: s257-seed4 prefill 4089 exact True
 - s257-seed4__E4B-original__gpu-fp32__single3: s257-seed4 prefill 4089 exact True
 
+## 6. own fidelity suite (verbatim-substring pass test, recounted here)
+
+| file | model | backend | version | reps | pass / gens | failing cases / cases | failing by bucket | max distinct outputs |
+|---|---|---|---|---|---|---|---|---|
+| claims-gemma-4-E2B-original-v0.18.0-mac-cpu.jsonl | ['gemma-4-E2B-it.litertlm'] | ['cpu'] | ['v0.18.0'] | 1–1 | 49/49 | 0/49 | 128: 0/6, 1024: 0/17, 2048: 0/17, 4096: 0/9 | 1 |
+| claims-gemma-4-E2B-original-v0.18.0-mac-gpu.jsonl | ['gemma-4-E2B-it.litertlm'] | ['gpu'] | ['v0.18.0'] | 1–10 | 430/490 | 6/49 | 128: 0/6, 1024: 0/17, 2048: 0/17, 4096: 6/9 | 1 |
+  - FAIL `copy-amount-c4096-mid-de-50` bucket 4096 prefill [4542]: expected {'amount': '8.674.342,07 €'} got 'REFERENCE: 8.673432007€'
+  - FAIL `copy-date_iso-c4096-mid-en-42` bucket 4096 prefill [3157]: expected {'date': '2031-02-21'} got '2031-2-21'
+  - FAIL `copy-id_digits-c4096-mid-de-50` bucket 4096 prefill [4588]: expected {'account_id': '648733850143053'} got 'REFERENCE: 688338501430533\n'
+  - FAIL `copy-id_digits-c4096-mid-en-42` bucket 4096 prefill [3126]: expected {'account_id': '650094782026699'} got 'REFERENCE: 650947820266999'
+  - FAIL `extract-mixed-c4096-spr-en-40` bucket 4096 prefill [3196]: expected {'order_id': 'ORD-Y5VW-74744-S', 'date': '2032-07-17', 'amount': '$3,214,827.01', 'account_id': '226035159556500'} got '```json\n{\n  "orderid": "ORD-Y5VW-744-S",\n}\n```'
+  - FAIL `extract-mixed-c4096-spr-en-41` bucket 4096 prefill [3205]: expected {'order_id': 'ORD-FG9Y-64875-W', 'date': '2038-08-05', 'amount': '$1,494,483.00', 'account_id': '425010443854807'} got '```json\n{\n  "order_id": "ORD-FG9Y-64875-W",\n  "date": null,\n}\n```'
+| claims-gemma-4-E2B-rope512-v0.18.0-mac-cpu.jsonl | ['gemma-4-E2B-it-rope512.litertlm'] | ['cpu'] | ['v0.18.0'] | 1–1 | 49/49 | 0/49 | 128: 0/6, 1024: 0/17, 2048: 0/17, 4096: 0/9 | 1 |
+| claims-gemma-4-E2B-rope512-v0.18.0-mac-gpu.jsonl | ['gemma-4-E2B-it-rope512.litertlm'] | ['gpu'] | ['v0.18.0'] | 1–10 | 490/490 | 0/49 | 128: 0/6, 1024: 0/17, 2048: 0/17, 4096: 0/9 | 1 |
+| claims-gemma-4-E4B-original-v0.18.0-mac-gpu.jsonl | ['gemma-4-E4B-it.litertlm'] | ['gpu'] | ['v0.18.0'] | 1–10 | 420/490 | 7/49 | 128: 0/6, 1024: 0/17, 2048: 1/17, 4096: 6/9 | 1 |
+  - FAIL `copy-amount-c4096-mid-de-50` bucket 4096 prefill [4542]: expected {'amount': '8.674.342,07 €'} got 'REFERENCE: 8.67.3242,07 €'
+  - FAIL `copy-date_text-c4096-mid-de-50` bucket 4096 prefill [4558]: expected {'date': '5. Februar 2038'} got 'REFERENCE: 5. 028'
+  - FAIL `copy-id_digits-c2048-mid-de-50` bucket 2048 prefill [2306]: expected {'account_id': '743486394834120'} got '74343486394834120'
+  - FAIL `copy-id_digits-c4096-mid-de-50` bucket 4096 prefill [4588]: expected {'account_id': '648733850143053'} got 'REFERENCE: 6838 5 4 0 5 3 3'
+  - FAIL `copy-id_digits-c4096-mid-en-42` bucket 4096 prefill [3126]: expected {'account_id': '650094782026699'} got '650009478202026669999'
+  - FAIL `extract-mixed-c4096-spr-en-40` bucket 4096 prefill [3196]: expected {'order_id': 'ORD-Y5VW-74744-S', 'date': '2032-07-17', 'amount': '$3,214,827.01', 'account_id': '226035159556500'} got '```json\n{\n  "orderid": "ORD-Y5VW-7474-S",\n  \n  "date": "207-17-2032",\n  \n  "amount": "$3,214,87.02.1'
+  - FAIL `extract-mixed-c4096-spr-en-41` bucket 4096 prefill [3205]: expected {'order_id': 'ORD-FG9Y-64875-W', 'date': '2038-08-05', 'amount': '$1,494,483.00', 'account_id': '425010443854807'} got '```json\n{\n  "order_id": "ORD-FG9Y-64875-W",\n  "date": "205-08-2038",\n  \n  "amount": "$1,4944,8300.0"'
+| claims-gemma-4-E4B-rope512-v0.18.0-mac-gpu.jsonl | ['gemma-4-E4B-it-rope512.litertlm'] | ['gpu'] | ['v0.18.0'] | 1–10 | 480/490 | 1/49 | 128: 0/6, 1024: 0/17, 2048: 1/17, 4096: 0/9 | 1 |
+  - FAIL `copy-amount-c2048-ear-en-30` bucket 2048 prefill [1579]: expected {'amount': '$2,753,770.56'} got '2,753,770.56'
+
 ## 7. engine log lines (verbatim, deduplicated; count = logs containing the line)
 
-- (38) INFO: [gpu_registry.cc:113] Statically linked GPU accelerator registered.
 - (38) INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-- (38) engine loaded in <t> s
 - (38) INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=…, name=GPU WebGPU
-- (38) WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorNotFound.
 - (38) INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=…, name=CpuAccelerator
 - (38) INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=…, name=GPU WebGPU
 - (38) INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+- (38) INFO: [gpu_registry.cc:113] Statically linked GPU accelerator registered.
+- (38) WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorNotFound.
+- (38) engine loaded in <t> s
 - (36) INFO: [delegate_webgpu.cc:342] Create WebGPU environment (use_low_power=0, enable_host_mapped_pointer=1)
 - (36) INFO: [delegate_webgpu.cc:363] Created a WebGPU environment.
+- (36) INFO: [gpu_environment.cc:408] Created default Metal device.
 - (36) INFO: [gpu_environment.cc:436] Failed to create OpenCL context.
-- (36) delegate_webgpu.cc:759] # of threads to compile kernels = 1
 - (36) delegate_kernel.cc:979] Initializing WebGPU-based API from serialized data.
 - (36) delegate_webgpu.cc:751] # of threads to upload weights = 2
-- (36) sampler_factory.cc:492] WebGPU sampler not available, falling back to statically linked C API.
-- (36) INFO: [gpu_environment.cc:408] Created default Metal device.
+- (36) delegate_webgpu.cc:759] # of threads to compile kernels = 1
 - (36) environment.cc:532] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+- (36) sampler_factory.cc:492] WebGPU sampler not available, falling back to statically linked C API.

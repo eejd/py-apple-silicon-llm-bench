@@ -15,10 +15,13 @@ tokens; `long` s129 / s161 / s190 / s250 × seeds 1–2 = 8 cases, 2094–3983 t
 `baseline` cases run with the unmodified file only in the time left (s122 / s124 / s126 / s129 /
 s142 × seeds 1–3, prompts 1982–2297). Each case asks the model to copy a 48-digit number placed
 before a filler text; `exact` means the reply is the number, digit for digit. The prompts were
-generated on the Mac from his runner's generator (the LCG reference digits and the filler;
-`expected` checked against all 692 records of his published results) and sent through the CLI's
-conversation path (`--use_session=false`, the engine applies the chat template), one process per
-case. Every count below was recounted from the jsonl with two separate scripts.
+generated on the Mac from a Python port of his runner's generator
+(`claims-gemma4-pixel8a-rope/repro/gen_prompts.py`: the LCG reference digits and the filler;
+`expected` checked against all 692 records of his published results; the 67 prompts' sha256 in
+`repro/prompts/SHA256SUMS`) and sent through the CLI's conversation path (`--use_session=false`,
+the engine applies the chat template), one process per case. Every count below was recounted from
+the jsonl with two separate scripts (`repro/count.py` is one of them; its output is
+`claims-gemma4-pixel8a-rope/count.txt`).
 
 Model files are the ones of the Mac run (`claims-gemma4-v0.18.0-mac-rope.md`; sha256 read back on
 the phone after the push): `gemma-4-E2B-it.litertlm` `181938105e…9a63c`,
@@ -88,4 +91,11 @@ past the point where `release/v0.18.0` branched and is not a descendant of the v
 records: `claims-gemma4-pixel8a-rope/raw/r2a__E2B-<file>__<backend>-<activations>.jsonl`, one JSON
 line per case with `id`, `prefill`, `exact`, `expected`, `output`, `firstMismatchPosition`, the
 process's command line and wall time; engine logs (stdout and stderr of every process):
-`claims-gemma4-pixel8a-rope/logs/`.
+`claims-gemma4-pixel8a-rope/logs/`, with the chain's own log of the reservation as `logs/chain.log`.
+The run's inputs and tools are in `claims-gemma4-pixel8a-rope/repro/` (README there): the prompt
+generator and the prompts' checksums, the plan of the legs, the chain's settings, the model and
+binary checksums, the scorer that turned each process's output into its record, and the recount.
+Three record fields hold paths of the run's working directory: `log` (`logs/android/r2a/<tag>` is
+`claims-gemma4-pixel8a-rope/logs/<tag>` here), `prefill_mac_src` (`raw/mac/<file>` is
+`claims-gemma4-v0.18.0-mac-rope/raw/<file>`) and `precision_src` (`K/android/sampler/<label>.peek.txt`
+is `repro/sampler/<label>.peek.txt`).

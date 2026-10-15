@@ -1,0 +1,4 @@
+# written by gen_prompts.py (the 67 prompt texts; prompts/SHA256SUMS and prompts/manifest.json are committed)
+prompts/*.txt
+# written by a run of the chain (records and per-leg logs)
+out/

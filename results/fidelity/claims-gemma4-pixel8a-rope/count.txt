@@ -1,0 +1,78 @@
+# #3913 Pixel 8a counts (repro/count.py) from 96 records in raw/
+
+## (1) model x backend: exact / total (DONE rows), the 26-question subset; other questions apart
+| model | backend | activation | subset 26 | other questions | files |
+|---|---|---|---|---|---|
+| original | cpu | fp32 | 3/3 | - | r2a__E2B-original__cpu-fp32.jsonl |
+| original | gpu | fp16 | 12/26 | 5/15 | r2a__E2B-original__gpu-fp16.jsonl |
+| rope512 | gpu | fp16 | 26/26 | - | r2a__E2B-rope512__gpu-fp16.jsonl |
+| rope2048 | gpu | fp16 | 26/26 | - | r2a__E2B-rope2048__gpu-fp16.jsonl |
+
+## (2) GPU, the subset by group: exact / total (digit positions prefill-1 … prefill+46 from the records)
+| model | baseline 18 | positions | long 8 | positions | below 2048 | crosses 2048 | at/above 2048 |
+|---|---|---|---|---|---|---|---|
+| original | 12/18 | 1704–2107 | 0/8 | 2093–4029 | 12/12 | 0/3 | 0/11 |
+| rope512 | 18/18 | 1704–2107 | 8/8 | 2093–4029 | 12/12 | 3/3 | 11/11 |
+| rope2048 | 18/18 | 1704–2107 | 8/8 | 2093–4029 | 12/12 | 3/3 | 11/11 |
+
+## (3) CPU controls
+- original cpu fp32: 3/3 — s104-seed1-iphone1705 exact, s125-seed1-iphone2028 exact, s129-seed1 exact
+
+## (4) prefill = the Mac's for the same question
+- 96/96 records match (reference: raw/mac/baseline__E2B-original__gpu-fp16.jsonl, raw/mac/cross4096__E2B-original__gpu-fp16.jsonl, raw/mac/long__E2B-original__gpu-fp16.jsonl)
+- prefill turns per process: [1] (the record's prefill = the sum of the turns; with one turn it is the runner's lastPrefillTokenCount)
+
+## (5) original GPU rows that failed: first mismatch position
+- 24 rows, firstMismatchPosition min 2051 max 3998
+  - s124-seed2-iphone2012: prefill 2012, first mismatch at digit 46 = position 2057, decode 50, output 2645988523244644365284456923782369974645653066650
+  - s125-seed1-iphone2028: prefill 2028, first mismatch at digit 31 = position 2058, decode 49, output 360450296322042052577609842187854268695200014813
+  - s125-seed2-iphone2028: prefill 2028, first mismatch at digit 42 = position 2069, decode 50, output 2645988523244644365284456923782369974645656506506
+  - s125-seed3-iphone2028: prefill 2028, first mismatch at digit 27 = position 2054, decode 51, output 35843559932698599765616113335494195813895906075999
+  - s126-seed1-iphone2046: prefill 2046, first mismatch at digit 12 = position 2057, decode 52, output 360450296322204205252577760984218785426869520014813
+  - s126-seed2-iphone2046: prefill 2046, first mismatch at digit 6 = position 2051, decode 48, output 26459852324446436528445692378236997464565306650
+  - s126-seed3-iphone2046: prefill 2046, first mismatch at digit 6 = position 2051, decode 80, output 3584359993269859765616113354941958138959060759993269859997656111335494
+  - s127-seed1-iphone2061: prefill 2061, first mismatch at digit 12 = position 2072, decode 48, output 36045029632222042525776098421885426869520014813
+  - s127-seed2-iphone2061: prefill 2061, first mismatch at digit 13 = position 2073, decode 49, output 264598852324446436528445692378236997464565306650
+  - s127-seed3-iphone2061: prefill 2061, first mismatch at digit 9 = position 2069, decode 80, output 3584355999326985976561613335494195813895906075999326985999765611133549
+  - s129-seed1: prefill 2094, first mismatch at digit 12 = position 2105, decode 51, output 36045029632220420525257776098421885426869520014813
+  - s129-seed2: prefill 2094, first mismatch at digit 7 = position 2100, decode 48, output 26459888523446436528445692378236997464565306650
+  - s129-seed1-iphone2094: prefill 2094, first mismatch at digit 12 = position 2105, decode 51, output 36045029632220420525257776098421885426869520014813
+  - s129-seed2-iphone2094: prefill 2094, first mismatch at digit 7 = position 2100, decode 48, output 26459888523446436528445692378236997464565306650
+  - s129-seed3-iphone2094: prefill 2094, first mismatch at digit 7 = position 2100, decode 51, output 35843555993269859765611113335494195813895906075999
+  - s142-seed1-iphone2297: prefill 2297, first mismatch at digit 12 = position 2308, decode 48, output 36045029632222042525776098421885426869520014813
+  - s142-seed2-iphone2297: prefill 2297, first mismatch at digit 13 = position 2309, decode 53, output 2645988523244464436528445569237823699974645653066650
+  - s142-seed3-iphone2297: prefill 2297, first mismatch at digit 9 = position 2305, decode 48, output 35843559993269859765616133549419581389590607599
+  - s161-seed1: prefill 2592, first mismatch at digit 2 = position 2593, decode 49, output 363045029632222042525776098421885426869520014813
+  - s161-seed2: prefill 2592, first mismatch at digit 13 = position 2604, decode 55, output 264598852324446444436528444569237823699746456565030650
+  - s190-seed1: prefill 3047, first mismatch at digit 16 = position 3062, decode 50, output 3604502963220420252577609842187854268695200014813
+  - s190-seed2: prefill 3047, first mismatch at digit 10 = position 3056, decode 47, output 2645988523446436528445692378236997464565306650
+  - s250-seed1: prefill 3983, first mismatch at digit 16 = position 3998, decode 43, output 360450296322042025776098421885426952014813
+  - s250-seed2: prefill 3983, first mismatch at digit 10 = position 3992, decode 47, output 2645988523446443652845692378236997464565306650
+
+## (6) the CLI process wall on the phone, median s (cold / warm; not a speed benchmark)
+- original cpu fp32: cold 64.5 (n 2), warm 54 (n 1, min 54 max 54)
+- original gpu fp16: cold 55.0 (n 2), warm 15 (n 39, min 9 max 20)
+- rope2048 gpu fp16: cold 41 (n 1), warm 16 (n 25, min 14 max 19)
+- rope512 gpu fp16: cold 40 (n 1), warm 16 (n 25, min 10 max 20)
+
+## (7) the GPU's identity (first GPU record's stderr lines, verbatim), runtime, device
+- registered: `INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f1eefa2c0, name=LiteRT GPU`
+- registered: `INFO: [gpu_registry.cc:138] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.`
+- registered: `INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f1eef9ca0, name=CpuAccelerator`
+- device: `I0000 00:00:1792023710.899927   12593 delegate_opencl.cc:644] options->hint_waiting_for_completion: false`
+- device: `I0000 00:00:1792023710.900067   12593 delegate_opencl.cc:646] options->kernel_batch_size: -1`
+- device: `INFO: [gpu_environment.cc:239] Created OpenCL device from provided device id and platform id.`
+- delegate: `Replacing 1 out of 42 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 2 partitions for subgraph 0 (main).`
+- delegate: `Replacing 1107 out of 1107 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (prefill_1024).`
+- delegate: `Replacing 1107 out of 1107 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 2 (prefill_128).`
+- delegate: `Replacing 2 out of 8 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 2 partitions for subgraph 0 (main).`
+- delegate: `Replacing 2068 out of 2068 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (decode).`
+- delegate: `Replacing 2243 out of 2243 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 3 (verify).`
+- activation: `activation_data_type: Not set`
+- weights: `W0000 00:00:1792023710.977361   12593 gpu_model_builder.cc:4452] Weights preparation on Gpu is disabled for PowerVR, Broadcom, Mali GPUs and non-OpenCL/WebGPU/Metal backends.`
+- runtime: LiteRT-LM main@b7c40ea81 (b7c40ea8178b80919f7f5af79855c922a40bfaf7, 2026-10-13; LITERT_REF 9b8c7f77e7a29e6073e614a05e1e38be7b761229) android_arm64 litert_lm_advanced_main sha256 ce1f25dc982413c0 + the commit's 7 prebuilt android_arm64 .so (record orig-gpu-s104-seed1-iphone1705, logs/android/r2a/orig-gpu-s104-seed1-iphone1705)
+- original: 41 GPU records, 1 distinct registered + delegate line set(s) (pointers and log stamps masked); LITERT_CL lines: Replacing 1107 out of 1107 1 (prefill_1024). | Replacing 1107 out of 1107 2 (prefill_128). | Replacing 2068 out of 2068 0 (decode). | Replacing 2243 out of 2243 3 (verify).
+- rope512: 26 GPU records, 1 distinct registered + delegate line set(s) (pointers and log stamps masked); LITERT_CL lines: Replacing 1144 out of 1144 1 (prefill_1024). | Replacing 1144 out of 1144 2 (prefill_128). | Replacing 2105 out of 2105 0 (decode). | Replacing 2280 out of 2280 3 (verify).
+- rope2048: 26 GPU records, 1 distinct registered + delegate line set(s) (pointers and log stamps masked); LITERT_CL lines: Replacing 1144 out of 1144 1 (prefill_1024). | Replacing 1144 out of 1144 2 (prefill_128). | Replacing 2105 out of 2105 0 (decode). | Replacing 2280 out of 2280 3 (verify).
+
+## statuses: {'DONE': 96}
