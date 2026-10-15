@@ -117,12 +117,14 @@ Runner `tools/litert-fidelity-runner/` built against v0.18.0 (`LITERTLM_VERSION=
 `maxNumTokens` 5760 (recorded per generation), greedy. Pass = the expected value appears verbatim
 in the output; the scorer (`scripts/fidelity_score.py`) and a separate substring recount agree.
 
-| model | file | arm | pass / 490 | failing cases / 49 | failing cases by context bucket (128 / 1024 / 2048 / 4096) |
+| model | file | arm | pass / generations | failing cases / 49 | failing cases by context bucket (128 / 1024 / 2048 / 4096) |
 |---|---|---|---|---|---|
-| E2B | original | gpu | 430 | 6 | 0 / 0 / 0 / 6 |
-| E2B | rope512 | gpu | 490 | 0 | 0 / 0 / 0 / 0 |
-| E4B | original | gpu | 420 | 7 | 0 / 0 / 1 / 6 |
-| E4B | rope512 | gpu | 480 | 1 | 0 / 0 / 1 / 0 |
+| E2B | original | gpu, 10 reps | 430 / 490 | 6 | 0 / 0 / 0 / 6 |
+| E2B | original | cpu, 1 rep | 49 / 49 | 0 | 0 / 0 / 0 / 0 |
+| E2B | rope512 | gpu, 10 reps | 490 / 490 | 0 | 0 / 0 / 0 / 0 |
+| E2B | rope512 | cpu, 1 rep | 49 / 49 | 0 | 0 / 0 / 0 / 0 |
+| E4B | original | gpu, 10 reps | 420 / 490 | 7 | 0 / 0 / 1 / 6 |
+| E4B | rope512 | gpu, 10 reps | 480 / 490 | 1 | 0 / 0 / 1 / 0 |
 
 - The unmodified files fail exactly the cases they failed on v0.17.1 (`claims-gemma4-v0.17.1-mac.md`),
   case for case: E2B `copy-amount-c4096-mid-de-50`, `copy-date_iso-c4096-mid-en-42`,
@@ -134,12 +136,15 @@ in the output; the scorer (`scripts/fidelity_score.py`) and a separate substring
   (prompt 1,579 tokens): it returns `2,753,770.56` where `$2,753,770.56` is expected, on 10 of 10 reps
   (the scorer calls it FORMAT_DRIFT: the digits are intact). The unmodified E4B file and both E2B files
   return `$2,753,770.56`.
-- Every arm returned the same output on all 10 reps of every case.
-- cpu arms of the same four files were queued after the gpu arms and are added here when they
-  finish (`claims-gemma-4-*-v0.18.0-mac-cpu.jsonl`).
+- Every gpu arm returned the same output on all 10 reps of every case.
+- cpu (XNNPACK) control, one rep per case: the E2B original and E2B rope512 files pass all 49
+  (the E2B rope512 file returns `$2,753,770.56` on `copy-amount-c2048-ear-en-30` on the cpu). The E4B
+  cpu arms were not run (the shared window queue had grown to 12–24 minutes per arm), so the cpu
+  side of the E4B rope512 case above is not measured.
 
-Raw: `claims-gemma-4-{E2B,E4B}-{original,rope512}-v0.18.0-mac-gpu.jsonl` (next to this file; one JSON
-line per generation with the output, prefill tokens and `maxNumTokens`).
+Raw: `claims-gemma-4-{E2B,E4B}-{original,rope512}-v0.18.0-mac-gpu.jsonl` and
+`claims-gemma-4-E2B-{original,rope512}-v0.18.0-mac-cpu.jsonl` (next to this file; one JSON line per
+generation with the output, prefill tokens and `maxNumTokens`).
 
 ## Not claimed
 
@@ -178,6 +183,7 @@ the window form was adopted; everything else ran inside the windows listed.
 | own suite, E4B original gpu | 09:59:23 | 10:08:24 | 1 |
 | own suite, E2B rope512 gpu | 10:23:17 | 10:27:02 | 1 |
 | own suite, E4B rope512 gpu | 10:50:49 | 10:59:50 | 1 |
+| own suite, E2B original cpu and E2B rope512 cpu (1 rep) | 11:17:16 | 11:23:47 | 2 |
 
 No timeouts, no errors in the recorded arms (one earlier `long` E4B original fp16 run was killed
 after 21 cases when another lane's window opened, and rerun in full inside the first window; its
